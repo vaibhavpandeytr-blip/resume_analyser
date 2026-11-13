@@ -1,5 +1,5 @@
 package com.example.resume_parser.controller;
-import com.example.resume_parser.model.Resume;
+import com.example.resume_parser.entity.Resume;
 import com.example.resume_parser.repository.ResumeRepository;
 import com.example.resume_parser.service.TextExtractionService;
 import org.springframework.web.bind.annotation.*;
