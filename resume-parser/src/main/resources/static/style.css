@@ -1,0 +1,9 @@
+body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;color:#222}
+nav a{margin-right:14px}
+input,textarea,button{font:inherit;padding:8px;margin:6px 0;width:100%;box-sizing:border-box}
+button{width:auto;cursor:pointer}
+.score{font-size:48px;font-weight:700}
+.tag{display:inline-block;padding:2px 10px;margin:3px;border-radius:12px;font-size:14px}
+.ok{background:#d8f5d8}.miss{background:#fbdcdc}
+table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:left}
+.err{color:#b00020}

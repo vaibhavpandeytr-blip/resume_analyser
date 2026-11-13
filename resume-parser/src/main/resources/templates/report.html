@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Report</title><link rel="stylesheet" th:href="@{/style.css}"></head>
+<body>
+<nav><a href="/">Upload</a><a href="/job">Job description</a></nav>
+<h1>Analysis report</h1>
+
+<div class="score" th:text="${result.matchPercent()} + '%'">0%</div>
+<p>Match score for <b th:text="${job.title}">Job</b></p>
+
+<h3>Matched skills</h3>
+<span class="tag ok" th:each="k : ${result.matchedSkills()}" th:text="${k}"></span>
+<h3>Missing skills</h3>
+<span class="tag miss" th:each="k : ${result.missingSkills()}" th:text="${k}"></span>
+
+<div th:if="${resume != null}">
+    <h3>Candidate</h3>
+    <p><b th:text="${resume.name}">Name</b><br>
+        <span th:text="${resume.email}"></span> · <span th:text="${resume.phone}"></span></p>
+    <h3>Skills found</h3>
+    <p th:text="${resume.skills}"></p>
+    <h3>Education</h3>
+    <p style="white-space:pre-line" th:text="${resume.education}"></p>
+    <h3>Experience</h3>
+    <p style="white-space:pre-line" th:text="${resume.experience}"></p>
+</div>
+
+<p>You have submitted <b th:text="${count}">1</b> time(s).
+    <a th:href="@{/history(email=${email})}">View history</a></p>
+</body></html>

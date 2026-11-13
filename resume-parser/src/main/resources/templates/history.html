@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>History</title><link rel="stylesheet" th:href="@{/style.css}"></head>
+<body>
+<nav><a href="/">Upload</a><a href="/job">Job description</a></nav>
+<h1>Submissions for <span th:text="${email}"></span></h1>
+<p>Total: <b th:text="${#lists.size(list)}">0</b></p>
+<table>
+    <tr><th>Date</th><th>File</th><th>Score</th></tr>
+    <tr th:each="s : ${list}">
+        <td th:text="${#temporals.format(s.submittedAt(),'dd MMM yyyy HH:mm')}"></td>
+        <td th:text="${s.fileName()}"></td>
+        <td th:text="${s.matchPercent()} + '%'"></td>
+    </tr>
+</table>
+</body></html>

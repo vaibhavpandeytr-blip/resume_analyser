@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Resume Analyser</title><link rel="stylesheet" th:href="@{/style.css}"></head>
+<body>
+<nav><a href="/">Upload</a><a href="/job">Job description</a></nav>
+<h1>Resume Analyser</h1>
+<p class="err" th:if="${error}" th:text="${error}"></p>
+<form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+    <label>Your email</label>
+    <input type="email" name="email" required>
+    <label>Resume (PDF, DOC, DOCX or TXT)</label>
+    <input type="file" name="file" accept=".pdf,.docx,.doc,.txt" required>
+    <button type="submit">Analyse</button>
+</form>
+<hr>
+<form th:action="@{/history}" method="get">
+    <label>See your past submissions</label>
+    <input type="email" name="email" placeholder="your email" required>
+    <button type="submit">View history</button>
+</form>
+</body></html>

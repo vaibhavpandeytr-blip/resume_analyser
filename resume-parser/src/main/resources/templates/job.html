@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Job description</title><link rel="stylesheet" th:href="@{/style.css}"></head>
+<body>
+<nav><a href="/">Upload</a><a href="/job">Job description</a></nav>
+<h1>Job description</h1>
+<form th:action="@{/job}" method="post">
+    <label>Job title</label>
+    <input name="title" th:value="${job.title}" required>
+    <label>Description (mention the skills required)</label>
+    <textarea name="description" rows="10" th:text="${job.description}" required></textarea>
+    <button type="submit">Save</button>
+</form>
+</body></html>
