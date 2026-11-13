@@ -1,30 +1,25 @@
 package com.example.resume_parser.controller;
-import com.example.resume_parser.entity.Resume;
-import com.example.resume_parser.repository.ResumeRepository;
-import com.example.resume_parser.service.TextExtractionService;
+
+import com.example.resume_parser.dto.MatchResult;
+import com.example.resume_parser.service.SubmissionService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 @RestController
 @RequestMapping("/api/resumes")
 public class ResumeController {
-    private final TextExtractionService extractionService;
-    private final ResumeRepository resumeRepository;
 
-    public ResumeController(TextExtractionService extractionService,
-                            ResumeRepository resumeRepository) {
-        this.extractionService = extractionService;
-        this.resumeRepository = resumeRepository;
+    private final SubmissionService submissionService;
+
+    public ResumeController(SubmissionService submissionService) {
+        this.submissionService = submissionService;
     }
 
-    @PostMapping("/upload")
-    public Resume upload(@RequestParam("file") MultipartFile file) throws Exception {
-        String text = extractionService.extractText(file);
-
-        Resume resume = new Resume();
-        resume.setFileName(file.getOriginalFilename());
-        resume.setRawText(text);
-
-        return resumeRepository.save(resume);
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public MatchResult upload(@RequestParam("file") MultipartFile file,
+                              @RequestParam String email,
+                              @RequestParam String jobDescription) throws Exception {
+        return submissionService.submit(file, email, jobDescription);
     }
 }
-

@@ -4,6 +4,6 @@ public record MatchResult (
     Long resumeId,
     String candidateName,
     int matchPercent,
-    List <String> matchedSkill,
+    List <String> matchedSkills,
     List<String> missingSkills
 ){}
